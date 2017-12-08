@@ -1,0 +1,364 @@
+<!--Load Base HTML and static files-->
+{% extends "base.html" %}
+{% load static %}
+
+<!--Context Menu Block-->
+{% block contentmenu %}
+<div style="width: 100%;height: 100%; line-height: 80%;">
+    <button class="workflownsl" id="newworkflow">New</button>
+    <button class="workflownsl" id="saveworkflow">{% csrf_token %}Save</button>
+</div>
+{% endblock %}
+
+<!--Context Block-->
+{% block content %}
+
+    <!--Left Menu HTML Code-->
+    <!--Responsible for implementing the dragable operators-->
+    <div class="leftmenu">
+
+        <div class="leftmenuspacer">
+            <div id="accordion" style="height: 100%;">
+                <h3>Flow Control</h3>
+                <div class="accordionh3">
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Start
+                    </div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        End
+                    </div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Fail
+                    </div>
+                </div>
+                <h3>Device Control</h3>
+                <div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Upgrade
+                    </div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Reboot
+                    </div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Switchover
+                    </div>
+                    <!--<div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Load Configuration
+                    </div>-->
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Send Image
+                    </div>
+                </div>
+                <h3>JSnap Manager</h3>
+                <div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Take Snapshot
+                    </div>
+                    <div class="draggableoperator ui-draggable ui-draggable-handle opdrag">
+                        Compare Snapshots
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Center workspace, area for editing the workflow-->
+    <div class="workspace">
+        <div class="flowchart" id="flowchart">
+        </div>
+    </div>
+
+    <!--Right Menu, operator customization-->
+    <div class="rightmenu">
+
+        <!--Start-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesStart">
+            <div class="optitle" >
+                Start
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Defines where the procedure begins.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+            </div> 
+        </div>
+
+        <!--End-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesEnd">
+            <div class="optitle" >
+                End
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Defines where the procedure ends.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+            </div> 
+        </div>
+
+        <!--Fail-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesFail">
+            <div class="optitle" >
+                Fail
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Defines a failure state.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+            </div> 
+        </div>
+
+        <!--Upgrade-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesUpgrade">
+            <div class="optitle" >
+                Upgrade
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Upgrades the device using the specified image located <font style="color: red">on the device</font>. The full path to the image must be provided, "/var/tmp/image_name", for example. The routing engine is <font style="color:red">automatically</font> rebooted if the selected target is "Single".
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Target Routing Engine:
+                    <div>
+                        <select name="upgradetargetRE" id="upgradetargetRE" class="settings_opt">
+                            <option selected = "selected" value=""></option>
+                            <option value="master">Master</option>
+                            <option value="backup">Backup</option>
+                        </select>
+                    </div>
+                    Image Path:
+                    <input class="filepath settings_field" id="upgradefilepath" value="">
+                </form>
+                
+            </div> 
+        </div>
+
+        <!--Reboot-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesReboot">
+            <div class="optitle" >
+                Reboot
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Reboots the target rounting engine.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Target Routing Engine:
+                    <div>
+                        <select name="reboottargetRE" id="reboottargetRE" class="settings_opt">
+                            <option selected = "selected" value=""></option>
+                            <option value="master">Master</option>
+                            <option value="backup">Backup</option>
+                        </select>
+                    </div>
+                </form>
+                
+            </div> 
+        </div>
+
+        <!--Switchover-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesSwitchover">
+            <div class="optitle" >
+                Switchover
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Perform a routing engine switchover.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+            </div> 
+        </div>
+
+        <!--Load Configuration-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesLoadConfiguration">
+            <div class="optitle" >
+                Load Configuration
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Loads the specified configuration file.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Configuration File Location:
+                    <div>
+                        <select name="configlocation" id="configlocation" class="settings_opt">
+                            <option selected = "selected" value=""></option>
+                            <option value="device">Device</option>
+                            <option value="jbotserv">Jbotserv</option>
+                        </select>
+                    </div>
+                    File Path:
+                    <input class="filepath settings_field" id="configfilepath" value="">
+                </form>
+                
+            </div> 
+        </div>
+
+        <!--Send Image-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesSendImage">
+            <div class="optitle" >
+                Send Image
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Sends the specified Junos image to the /var/tmp folder in the target device.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Junos Image:
+                    <input class="filepath settings_field" id="junosimage" value="">
+                </form>
+                
+            </div> 
+        </div>
+
+        <!--Take Snapshot-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesTakeSnapshot">
+            <div class="optitle" >
+                Take Snapshot
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo" >
+                Takes a snapshot of device and saves all information to a file with the specified name.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Snapshot Name:
+                    <input class="filepath settings_field" id="take_snapshot_name" value="">
+                    JSnap File:
+                    <div>
+                        <select name="Jsnap Comparison" id="take_compare_type" class="settings_opt morph">
+                            <!--<option selected value=""></option>
+                            <option value="pre">Preconfigured</option>
+                            <option value="custom">Custom File</option>-->
+                             <option selected value="custom">File</option>
+                        </select>
+                        <div class="take_settings ephemeral" id="take_pre_settings">
+                            File name:
+                            <select id="take_pre_name" class="settings_opt">
+                                <option selected = "selected" value=""></option>
+                                <option value="standard">Standard</option>
+                                <option value="algar">Algar</option>
+                                <option value="vivo">Telefonica/Vivo</option>
+                            </select>
+                        </div>
+                        <div class="take_settings ephemeral" id="take_custom_settings">
+                            File name:
+                            <input class="filepath settings_field" id="take_custom_name" value="">
+                        </div>
+                    </div>
+                </form>
+                
+            </div> 
+        </div>
+
+        <!--Compare Snapshots-->
+        <div class="operatorproperties ephemeral block_settings" id="propertiesCompareSnapshots">
+            <div class="optitle" >
+                Compare Snapshots
+            </div>
+            <div class="opinfotitle">
+                Information
+            </div>
+            <div class="opinfo">
+                Compare snapshots.
+            </div> 
+            <div class="opsettitle">
+                Settings
+            </div>
+            <div class="opset" >
+                <form>
+                    Snapshot 1:
+                     <input class="filepath settings_field" id="snapshot1name" value="">
+                    Snapshot 2:
+                     <input class="filepath settings_field" id="snapshot2name" value="">
+                     JSnap File:
+                     <div>
+                        <select name="Jsnap Comparison" id="comparetype" class="settings_opt morph">
+                            <!--<option selected = "selected" value=""></option>
+                            <option value="pre">Preconfigured</option>
+                            <option value="custom">Custom File</option>-->
+                            <option selected value="custom">File</option>
+                        </select>
+                        <div class="comparesettings ephemeral" id="presettings">
+                            File name:
+                            <select id="precomparefile" class="settings_opt">
+                                <option selected = "selected" value=""></option>
+                                <option value="standard">Standard</option>
+                                <option value="algar">Algar</option>
+                                <option value="vivo">Telefonica/Vivo</option>
+                            </select>
+                        </div>
+                        <div class="comparesettings ephemeral" id="customsettings">
+                            File name:
+                            <input class="filepath settings_field" id="snapconfigfile" value="">
+                        </div>
+                    </div>
+                </form>
+                
+            </div> 
+        </div>
+
+
+
+
+        <div>
+            <button class="deletebutton" id="deleteselected"> <a class="recycle">&#9850; Delete </a></buton>
+       </div>
+
+    </div>    
+
+    <!--Javascript Files-->
+    <script src="{% static "workflow/workflow.js" %}"></script>
+
+{% endblock %}

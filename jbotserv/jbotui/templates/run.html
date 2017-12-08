@@ -1,0 +1,33 @@
+<!--Load Base HTML and static files-->
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div id="runmenu">
+        <form id="runform">
+            {% csrf_token %}
+            Target:<br>
+            <input type="text" id="target" name="target" placeholder="Hostname or address" required>
+            <br>
+            User:<br>
+            <input type="text" id="user" name="user" placeholder="User login" required>
+            <br>
+            Password:<br>
+            <input type="password" id="passwd" name="passwd" placeholder="User password" required>
+            <br>
+            Workflow:<br>
+            <input type="text" id="workflow" name="workflow" placeholder="Workflow file" required>
+            <br>
+            <input type="submit" value="Run">
+        </form>
+    </div>
+
+    <div id="runresults">
+        yo
+    </div>
+
+    <script src="{% static "run/run.js" %}"></script>
+
+{% endblock %}
+

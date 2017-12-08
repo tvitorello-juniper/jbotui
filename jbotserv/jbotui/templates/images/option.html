@@ -1,0 +1,45 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Images</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "images/images.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="height: 85vh;" class="row valign-wrapper">
+        <div class="col s5">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-12.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">Upload an Image</span>
+                <p>Upload a Junos image file to the server.</p>
+                </div>
+                <div class="card-action">
+                <a href="/images_upload">Upload an image</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s5 offset-s2">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-11.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">List Images</span>
+                <p>List and manage Junos images present on the server.</p>
+                </div>
+                <div class="card-action">
+                <a href="/images_list">List images</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

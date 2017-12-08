@@ -1,0 +1,44 @@
+#runmenu {
+    height: 100%;
+    width: 25%;
+    padding: 2%;
+    font-size: 22px;
+    font-family: Verdana,sans-serif;
+    font-weight:bold;
+    float: left;
+}
+input[type=text],input[type=password], select, textarea {
+    width: 100%;
+    padding: 2%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    font-size: 22px;
+    font-family: Verdana,sans-serif;
+}
+input[type=submit] {
+    width: 100%;
+    background-color: rgb(253, 253, 150);
+    color: black;
+    padding: 2% 45%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: Verdana,sans-serif;
+    box-shadow: none;
+    border: none;
+}
+input[type=submit]:hover {
+    background-color: rgb(253, 253, 150);
+}
+#runresults {
+    background: black;
+    color: white;
+    width: 70%;
+    height: 95%;
+    margin-top: 1%;
+    float: left;
+    display: none;
+}

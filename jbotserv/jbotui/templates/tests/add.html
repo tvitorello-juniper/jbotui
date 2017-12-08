@@ -1,0 +1,34 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Tests</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "tests/tests.js" %}"></script>
+<script src="{% static "tests/add.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row valign-wrapper" style="height: 80vh;">
+      <div class="col s12 m8 l4 offset-s0 offset-m2 offset-l4 ">
+        <div class="container">
+          <div class="card white darken-1 z-depth-5">
+              <div class="card-content black-text">
+                <span class="card-title">Upload new test</span>
+                <form class=""  enctype="multipart/form-data" method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <br>
+                  <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Confirm
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Groups</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "groups/groups.js" %}"></script>
+<script src="{% static "groups/list.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="groups-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Members</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group, members in groups.items %}
+                <tr>
+                    <td></td>
+                    <td class="group-name">{{ group }}</td>
+                    <td>
+                        {% for member in members %}
+                        <p>{{ member.address }}</p>
+                        {% endfor %}
+                    </td>
+                    <td><a class="btn-floating btn waves-effect waves-light red delete-group"><i class="material-icons">clear</i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

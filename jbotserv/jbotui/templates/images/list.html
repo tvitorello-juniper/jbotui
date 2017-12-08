@@ -1,0 +1,35 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Images</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "images/images.js" %}"></script>
+<script src="{% static "images/list.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="images-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in images %}
+                <tr>
+                    <td></td>
+                    <td class="image-name">{{ image.data }}</td>
+                    <td><a class="btn-floating btn waves-effect waves-light red delete-image"><i class="material-icons">clear</i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

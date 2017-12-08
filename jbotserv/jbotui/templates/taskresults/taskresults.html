@@ -1,0 +1,39 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Results</title>
+<link rel="stylesheet" type="text/css" href="{% static 'taskresults/taskresults.css' %}" />
+{% endblock %}
+
+{% block js %}
+<script src="{% static "taskresults/taskresults.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="tasks-table">
+        <thead>
+            <tr>
+                <th class="hide">Task ID</th>
+                <th>Date</th>
+                <th>Workflow</th>
+                <th>Target</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultx in results %}
+                <tr class="clickable" data-href='/results/{{ resultx.task_id }}' id="{{ resultx.task_id }}">
+                    <td class="hide task-id">{{ resultx.task_id }}</td>
+                    <td>{{ resultx.date_done }}</td>
+                    <td>{{ resultx.result.workflow }}</td>  
+                    <td>{{ resultx.result.target }}</td>
+                    <td>{{ resultx.result.message }}</td>  
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

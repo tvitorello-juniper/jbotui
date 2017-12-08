@@ -1,0 +1,35 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Tests</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "tests/tests.js" %}"></script>
+<script src="{% static "tests/list.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="images-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for test in tests %}
+                <tr>
+                    <td></td>
+                    <td class="test-name">{{ test.data }}</td>
+                    <td><a class="btn-floating btn waves-effect waves-light red delete-test"><i class="material-icons">clear</i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

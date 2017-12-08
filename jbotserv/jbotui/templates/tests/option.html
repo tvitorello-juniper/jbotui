@@ -1,0 +1,60 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Tests</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "tests/tests.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="height: 85vh;" class="row valign-wrapper">
+        <div class="col s4">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-4.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">Upload a Test</span>
+                <p>Upload a Jsnap test file to the server.</p>
+                </div>
+                <div class="card-action">
+                <a href="/tests_upload">Upload a test</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-6.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">Create Test</span>
+                <p>Create a new Jsnap test file.</p>
+                </div>
+                <div class="card-action">
+                WORK IN PROGRESS
+                <!--<a href="/tests_create">Create a test file</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-7.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">List Tests</span>
+                <p>List test files present in the server.</p>
+                </div>
+                <div class="card-action">
+                <a href="/tests_list">List tests</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

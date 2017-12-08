@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize_custom.css' %}" />
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body class="black-text">
+        <div class="navbar-fixed">
+            <!-- Navbar goes here -->
+            <nav class="white">
+                <div class="nav-wrapper">
+                <img  style="height:100%;" class="responsive-img brand-logo black-text center" src="{% static "juniper-networks-blue-small.png" %}"/>
+                <ul id="nav-mobile" class="left">
+                    <li><a href="/devices" class="black-text">Devices</a><li>
+                    <li><a href="/groups" class="black-text">Groups</a><li>
+                    <li><a href="/images" class="black-text">Images</a><li>
+                    <!--<li><a href="/configfiles" class="black-text">Configuration Files</a><li>-->
+                    <li><a href="/tests" class="black-text">Tests</a><li>
+                    <li><a href="/workflow" class="black-text">Workflows</a><li>
+                </ul>
+                <ul id="nav-mobile" class="right">
+                    <li><a href="/execute" class="black-text">Execute Task</a><li>
+                    <li><a href="/tasks" class="black-text">Running Tasks</a><li>
+                    <li><a href="/results" class="black-text">Task Results</a><li>
+                    <li><a href="/settings" class="black-text">Settings</a></li>
+                </ul>
+                </div>
+            </nav>
+        </div>
+    <!-- Page Layout here -->
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static "jquery-3.2.1/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
+    <script src="{% static "materialize/js/materialize.min.js" %}"></script>
+    <script src="{% static "new-base/new-base.js" %}"></script>
+    {% block js %}
+    {% endblock %}
+    </body>
+</html>

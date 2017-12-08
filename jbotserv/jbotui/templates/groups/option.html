@@ -1,0 +1,45 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Groups</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "groups/groups.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="height: 85vh;" class="row valign-wrapper">
+        <div class="col s5">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-8.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">Create a Group</span>
+                <p>Create a new device group.</p>
+                </div>
+                <div class="card-action">
+                <a href="/groups_add">Create a group</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s5 offset-s2">
+            <div class="card blue-grey darken-1 z-depth-5">
+                <div class="card-image">
+                    <img class="responsive-img" src="{% static "/juniper-networks-popular-img-10.jpg" %}"/>
+                </div>
+                <div class="card-content white-text">
+                <span class="card-title">List Groups</span>
+                <p>List and manage device groups.</p>
+                </div>
+                <div class="card-action">
+                <a href="/groups_list">List groups</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

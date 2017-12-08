@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <script src="{% static "jquery-3.2.1/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
+    <script src="{% static "jquery-flowchart/jquery.flowchart.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'jquery-flowchart/jquery.flowchart.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    
+</head>
+
+<body>
+    <div id="div1" class="cont"></div>
+    
+</body>
+<script>
+$(document).ready(function() {
+    var data = {
+      operators: {
+        operator1: {
+          top: 20,
+          left: 20,
+          properties: {
+            title: 'Start',
+            inputs: {},
+            outputs: {
+              output_1: {
+                label: 'Next',
+              }
+            }
+          }
+        },
+        operator2: {
+          top: 80,
+          left: 300,
+          properties: {
+            title: 'Upgrade',
+            inputs: {
+              input_1: {
+                label: '    ',
+              },
+            },
+            outputs: {
+                output_1: {
+                    label: 'Next',
+                },
+                output_2: {
+                    label: 'onFail',
+                },
+            },
+            atributes: {
+                string: "Hello",
+            }
+          }
+        },
+      }
+    };
+
+    // Apply the plugin on a standard, empty div...
+    $('#div1').flowchart({
+      data: data
+    });
+  });
+
+</script>
+
+</html>

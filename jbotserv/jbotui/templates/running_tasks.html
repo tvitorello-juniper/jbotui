@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--This page implements a page listing all the currently running tasks-->
+
+<!--Load css settings specific for this page-->
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.min.css' %}"/>
+{% endblock %}
+
+<!--Load js scripts specific for this page-->
+{% block js %}
+<script src="{% static "running-tasks/running-tasks.js" %}"></script>
+{% endblock %}
+
+<!--Page content-->
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" class="centered" id="running-tasks-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+            
+{% endblock %}

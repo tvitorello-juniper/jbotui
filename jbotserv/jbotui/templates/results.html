@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!--This page implements a page listing all of the tasks results-->
+
+<!--Load css settings specific for this page-->
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.min.css' %}"/>
+{% endblock %}
+
+<!--Load js scripts specific for this page-->
+{% block js %}
+<script src="{% static "results/results.js" %}"></script>
+{% endblock %}
+
+<!--Page content-->
+{% block content %}
+<div class="container">
+    <table class="highlight" class="centered" id="results-table">
+        <thead>
+            <tr>
+                <th>Results</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+            
+{% endblock %}

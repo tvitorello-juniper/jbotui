@@ -1,0 +1,37 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Tasks</title>
+<meta http-equiv="refresh" content="30">
+{% endblock %}
+
+{% block js %}
+<script src="{% static "tasks/tasks.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="tasks-table">
+        <thead>
+            <tr>
+                <th class="hide">Task ID</th>
+                <th>Workflow</th>
+                <th>Target</th>
+                <th>Time Started</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task_id, task_data in tasks.items %}
+                <tr>
+                    <td class="hide task-id">{{ task_id }}</td>
+                    <td>{{ task_data.workflow }}</td>
+                    <td>{{ task_data.target }}</td>
+                    <td>{{ task_data.time }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

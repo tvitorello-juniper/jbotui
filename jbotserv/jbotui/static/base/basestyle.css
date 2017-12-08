@@ -1,0 +1,86 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+div.mainwindow {
+    width: 99%;
+    height: 98%;
+    right: 1%;
+    border: solid black 1px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.2%;
+    overflow: hidden;
+}
+div.sidebar {
+    width: 6%;
+    height: 100%;
+    float: left;
+    margin-right: -1px;
+}
+div.sidebarlogo {
+    height: 8%;
+    width: 100%;
+    margin-bottom: -1px;
+}
+div.sidebartop {
+    height: 40%;
+    width: 100%;
+    border-top: solid black 1px;
+    margin-top: -1px;
+    padding: 5%;
+}
+div.sidebarreserved {
+    height: 40%;
+    width: 100%;
+}
+div.sidebarbottom {
+    height: 8%;
+    width: 100%;
+    background-color: white;
+    padding: 5%;
+}
+div.contentwindow {
+    width:94%;
+    height: 100%;
+    left: 6%;
+    margin-left: -1px;
+    float: right;
+    border-left: solid black 1px;
+    overflow: hidden;
+}
+div.contentmenu {
+    height: 8%;
+    width: 100%;
+    margin-bottom: -1px;
+    overflow: hidden;
+}
+div.content {
+    border-top: solid black 1px;
+    width: 100%;
+    height: 92%;
+    overflow: hidden;
+}
+button.sidebar {
+    height: 7vh;
+    width: 80%;
+    margin: 5%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 100%;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+}
+.imghelper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

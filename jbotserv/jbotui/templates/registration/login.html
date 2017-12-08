@@ -1,0 +1,35 @@
+{% load static %}
+
+<html>
+  <head>
+      <title>JBOT Login</title>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--<link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" />-->
+      <link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.min.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize_custom.css' %}" />
+  </head>
+  <body>
+    <div class="row valign-wrapper" style="height: 80vh;">
+      <div class="col s12 m8 l4 offset-s0 offset-m2 offset-l4 ">
+        <div class="container">
+          <div class="card white darken-1 z-depth-5">
+              <div class="card-image">
+                <img class="responsive-img" src="{% static "juniper-networks-blue-small.png" %}"/>
+              </div>
+              <div class="card-content black-text">
+                <span class="card-title">Login</span>
+                <form class=""method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button class="btn waves-effect waves-light" type="submit" name="action">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html
+            

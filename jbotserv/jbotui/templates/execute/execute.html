@@ -1,0 +1,100 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Execute</title>
+<link rel="stylesheet" type="text/css" href="{% static 'execute/execute.css' %}" />
+{% endblock %}
+
+{% block js %}
+<script src="{% static "execute/execute.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <br>
+    <div class="row">
+        <div class="input-field col s6">
+            <input placeholder="Login" id="login" type="text" class="validate">
+            <label for="login">Login</label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="Password" id="passwd" type="password" class="validate">
+            <label for="password">Password</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field inline col s10">
+            <select id='workflow'>
+                <option value="" disabled selected>Select workflow to execute</option>
+                {% for workflow in workflows %}
+                <option value="{{ workflow.name }}">{{ workflow.name }}</option>
+                {% endfor %}
+            </select>
+            <label>Workflow</label>
+        </div>
+        <div class="input-field inline col s2">
+            <a id="execute-button" class="waves-effect waves-light btn-large">Execute</a>
+        </div>
+    </div>
+    <div class="row">
+        <!--<h5 class="center-align">Available Devices</h5>-->
+        <div class="col s12">
+            <ul class="tabs" id="tabs">
+                <li class="tab col s6"><a class="active" href="#devices">Devices</a></li>
+                <li class="tab col s6"><a href="#groups">Groups</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="devices" class="row">
+        <table class="highlight" id="devices-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Type</th>
+                    <th>Hostname</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for device in devices %}
+                    <tr>
+                        <td><input type="checkbox" class="device-checkbox filled-in" id="{{ device.address }}" /><label for="{{ device.address }}"> </label></td>
+                        <td></td>
+                        <td></td>
+                        <td class="device-address">{{ device.address }}</td>
+                        <td></td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="groups" class="row">
+        <table class="highlight" id="groups-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Members</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group, members in groups.items %}
+                <tr>
+                    <td><input type="checkbox" class="group-checkbox filled-in" id="{{ group }}" /><label for="{{ group }}"> </label></td>
+                    <td class="group-name">{{ group }}</td>
+                    <td>
+                        {% for member in members %}
+                        <p>{{ member.address }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
+

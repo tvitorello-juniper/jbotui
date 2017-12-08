@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    {% block head %}
+    {% endblock %}
+    <script src="{% static "jquery-3.2.1/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "jquery-ui-1.12.1/jquery-ui.min.js" %}"></script>
+    <script src="{% static "jquery-flowchart/jquery.flowchart.js" %}"></script>
+    <script src="{% static "jquery-panzoom/jquery.panzoom.min.js" %}"></script>
+    <script src="{% static "base/base.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui-1.12.1/jquery-ui.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'jquery-flowchart/jquery.flowchart.css' %}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'materialize/css/materialize.min.css' %}" />-->
+    <link rel="stylesheet" type="text/css" href="{% static 'base/basestyle.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'workflow/workflow.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'run/run.css' %}" />
+
+</head>
+
+<body>
+    <div class="mainwindow">
+
+        <!--Left Sidebar-->
+        <div class="sidebar">
+            <div class="sidebarlogo">
+                <span class="imghelper"></span><img src="{% static "juniper-networks-blue-small.png" %}"/>
+            </div>
+            <div class="sidebartop">
+                <a href="devices"><button title="Devices" class="sidebar" style="background: #39b2ee">Devices</button><a>
+            </div>
+            <div class="sidebarreserved">
+            </div>
+            <div class="sidebarbottom">
+            </div>
+        </div>
+
+        <!--Content Window-->
+        <div class="contentwindow">
+
+            <!--Top Content Menu-->
+            <div class="contentmenu">
+                {% block contentmenu %}
+                {% endblock %}
+            </div>
+
+            <!--Main Content Window-->
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static "materialize/js/materialize.min.js" %}"></script>
+    {% block js %}
+    {% endblock %}
+     
+</body>
+
+</html>

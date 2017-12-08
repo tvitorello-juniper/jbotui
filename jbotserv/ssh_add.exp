@@ -1,0 +1,16 @@
+set SSH_HOST [lindex $argv 0]
+set SSH_LOGIN [lindex $argv 1]
+set SSH_PASSWD [lindex $argv 2]
+spawn ssh $SSH_LOGIN@$SSH_HOST
+expect {
+    "Are you sure you want to continue connecting (yes/no)?" {
+        send "yes\r"
+        expect "Password:"
+        send "$SSH_PASSWD\r"
+    }
+    expect "Password:" {
+        send "$SSH_PASSWD\r"
+    }
+}
+expect ""
+send "exit"

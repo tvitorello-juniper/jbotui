@@ -1,0 +1,95 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Results</title>
+<link rel="stylesheet" type="text/css" href="{% static 'taskresults/taskresults.css' %}" />
+{% endblock %}
+
+{% block js %}
+<script src="{% static "taskresults/taskresultsdetail.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table>
+        <thead>
+            <tr>
+                <th class="center-align">WORKFLOW SUMMARY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="row">
+                    <div style="font-weight: bold;" class="col s2">TASK ID</div>
+                    <div class="col s10">{{ task_info.task_id }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="row">
+                    <div style="font-weight: bold;" class="col s2">DATE</div>
+                    <div class="col s10">{{ task_info.task_date }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="row">
+                    <div style="font-weight: bold;" class="col s2">WORKFLOW</div>
+                    <div class="col s10">{{ task_info.workflow }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="row">
+                    <div style="font-weight: bold;" class="col s2">TARGET</div>
+                    <div class="col s10">{{ task_info.target }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="row">
+                    <div style="font-weight: bold;" class="col s2">RESULT</div>
+                    <div class="col s10">{{ task_info.message }}</div>
+                </td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th class="center-align">LOGS</th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ task_info.logs|linebreaks }}</td>
+            </tr>
+        </tbody>
+        <!--<thead>
+            <tr>
+                <th>Another Head</th>
+            </tr>
+        </thead>-->
+    </table>
+</div>
+<!--<div class="container black-text">
+    <table class="highlight" id="tasks-table">
+        <thead>
+            <tr>
+                <th class="hide">Task ID</th>
+                <th>Date Ended</th>
+                <th>Workflow</th>
+                <th>Target</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for resultx in results %}
+                <tr class="clickable" data-href='results/{{ resultx.task_id }}' id="{{ resultx.task_id }}">
+                    <td class="hide task-id">{{ resultx.task_id }}</td>
+                    <td>{{ resultx.date_done }}</td>
+                    <td>{{ resultx.result.workflow }}</td>  
+                    <td>{{ resultx.result.target }}</td>
+                    <td>{{ resultx.result.message }}</td>  
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>-->
+{% endblock %}
+

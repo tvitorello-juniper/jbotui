@@ -1,0 +1,39 @@
+{% extends "new_base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Devices</title>
+{% endblock %}
+
+{% block js %}
+<script src="{% static "devices/devices.js" %}"></script>
+<script src="{% static "devices/list.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container black-text">
+    <table class="highlight" id="devices-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Hostname</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="device-address">{{ device.address }}</td>
+                    <td></td>
+                    <td><a class="btn-floating btn waves-effect waves-light red delete-device"><i class="material-icons">clear</i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
